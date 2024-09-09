@@ -1,0 +1,126 @@
+{
+  "project_info": {
+    "project_number": "1090587930950",
+    "project_id": "quickcab-taxi-service---driver",
+    "storage_bucket": "quickcab-taxi-service---driver.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090587930950:android:b4445420a987cb10ce3547",
+        "android_client_info": {
+          "package_name": "com.ionic.qcdriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090587930950-gp7l620fib5obmb3b2ncsftvpcfaam8b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAAvfURXsTWXPj03n2Iof-iLXYmSFg7Nc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090587930950-gp7l620fib5obmb3b2ncsftvpcfaam8b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090587930950:android:d5930060635fec1cce3547",
+        "android_client_info": {
+          "package_name": "io.ionic.qcdriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090587930950-gp7l620fib5obmb3b2ncsftvpcfaam8b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAAvfURXsTWXPj03n2Iof-iLXYmSFg7Nc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090587930950-gp7l620fib5obmb3b2ncsftvpcfaam8b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090587930950:android:c81d857ea7f6703fce3547",
+        "android_client_info": {
+          "package_name": "io.ionic.qcts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090587930950-gp7l620fib5obmb3b2ncsftvpcfaam8b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAAvfURXsTWXPj03n2Iof-iLXYmSFg7Nc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090587930950-gp7l620fib5obmb3b2ncsftvpcfaam8b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090587930950:android:16b0607259a889f4ce3547",
+        "android_client_info": {
+          "package_name": "io.ionic.qcus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090587930950-gp7l620fib5obmb3b2ncsftvpcfaam8b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAAvfURXsTWXPj03n2Iof-iLXYmSFg7Nc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090587930950-gp7l620fib5obmb3b2ncsftvpcfaam8b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

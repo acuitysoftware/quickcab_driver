@@ -1,0 +1,42 @@
+<ion-header [class]="isAndroid? 'android-header' : ''">
+  <ion-toolbar style="text-align: center;--background:#ffbc01;">
+    <ion-row>
+      <ion-col size="2" style="text-align: center;">
+        <ion-icon name="close" (click)="closethis()"></ion-icon>
+      </ion-col>
+      <ion-col size="8">
+        <ion-title>Edit Phone Number</ion-title>
+      </ion-col>
+      <ion-col size="2">
+
+      </ion-col>
+    </ion-row>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none" style="margin-top:5%;">
+    <ion-label>Current Phone number : </ion-label>
+  </ion-item>
+  <ion-item lines="none" style="margin-top:2%;">
+    <ion-input type="tel" maxlength="4" readonly="true" id="oldphn"
+      style="border-bottom: rgb(232, 226, 226) 1px solid;color:rgb(220, 205, 205)">
+      {{droldphn}}</ion-input>
+  </ion-item>
+
+  <ion-item lines="none" style="margin-top:5%">
+    <ion-label> Enter new Phone number: </ion-label>
+  </ion-item>
+  <ion-item lines="none" style="margin-top:2%;">
+    <ion-input type="tel" maxlength="10" id="newphn" style="border-bottom: rgb(228, 225, 225) 1px solid;"></ion-input>
+  </ion-item>
+
+  <ion-fab vertical="bottom" style="margin-bottom: 60px;" horizontal="center" (click)='applyphone()'>
+    <ion-fab-button style="--background:#ffbc01">
+      <ion-icon name="checkmark"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+</ion-content>

@@ -1,0 +1,27 @@
+#map_canvas{
+    width: 100%;
+    height: 100%;
+}
+ion-col{
+    text-align: center;
+    font-size: 120%;
+}
+#offlinediv{
+    position: absolute;
+    top:5%;
+    width:90%;
+    left:5%;
+    background-color: rgba(235, 142, 142, 0.6);
+    box-shadow: grey 2px 3px 6px;
+    padding:3%;
+}
+#onlinediv{
+    position: absolute;
+    top:5%;
+    width:90%;
+    left:5%;
+    background-color: rgba(174, 235, 181, 0.6);
+    box-shadow: grey 2px 3px 6px;
+    padding:3%;
+    font-weight: bold;
+}

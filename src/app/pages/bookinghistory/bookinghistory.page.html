@@ -1,0 +1,618 @@
+<ion-header [class]="isAndroid? 'android-header' : ''">
+  <ion-toolbar style="text-align: center; --background:#ffbc01;">
+    <ion-row>
+      <ion-col size="3" style="padding-top: 4%;padding-left:5%;text-align: left;">
+        <ion-icon name="menu" (click)='menuon()'></ion-icon>
+      </ion-col>
+      <ion-col size="6" style="padding-top: 4%;text-align: center;" id='onoff'>Booking History</ion-col>
+      <ion-col size="3" style="padding-top: 4%;padding-right:5%;text-align: right;">
+        <ion-icon name="refresh-circle" style="font-size: 120%;" (click)='refreshpage()'></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>  
+  
+  <div style="padding-bottom: 70px;" id='allhist' *ngIf='driverhistory != []'>
+    <div  class='driverrides' *ngFor="let x of driverhistory">
+
+      <div *ngIf="x.tripType == 1">
+
+      <div (click)='gotopages(x.id,x.current_status,x.payment)'
+        *ngIf='x.current_status == 1 || x.current_status == 2 || x.current_status == 3'
+        style='background-color: #dceed8;padding:3%; border-radius: 10px;'>
+        <ion-row>
+          <ion-col size="2">
+            <img src='https://quickcabtaxiservice.com/storage/app/public/customer.png'
+              style="height: 35px;width:35px;border-radius:100%;" *ngIf="!x.customer_image || x.customer_image==null">
+            <img src='{{imagepath}}{{x.customer_image}}' style="height: 35px;width:35px;border-radius:100%;"
+              *ngIf="!!x.customer_image || x.customer_image!=null">
+          </ion-col>
+          <ion-col size="10">
+            <ion-row>
+              <ion-col size="8" style="font-size: 85%;">
+                <b> {{x.customer_name}} </b>
+              </ion-col>
+              <ion-col size="4" style="font-size: 85%; white-space: nowrap;">
+                <font id=''>{{x.ride_status}}</font>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!x.trip_start_time">
+              <ion-col size="4">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.transaction_date | date:'dd MMM-YY'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='time' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'> N/A </font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b>{{x.trip_price |
+                  currency:'INR'}}</b>
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!!x.trip_start_time">
+              <ion-col size="4">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.trip_start_time | date:'dd MMM-YY'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='time' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.trip_start_time | date:'shortTime'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b>{{x.trip_price |
+                  currency:'INR'}}</b>
+              </ion-col>
+            </ion-row>
+
+
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div (click)='gotopages(x.id,x.current_status,x.payment)' *ngIf='x.current_status == 6'
+        style='background-color: #fcd8bf;padding:3%; border-radius: 10px;'>
+        <ion-row>
+          <ion-col size="2">
+            <img src='https://quickcabtaxiservice.com/storage/app/public/customer.png'
+              style="height: 35px;width:35px;border-radius:100%;" *ngIf="!x.customer_image || x.customer_image==null">
+            <img src='{{imagepath}}{{x.customer_image}}' style="height: 35px;width:35px;border-radius:100%;"
+              *ngIf="!!x.customer_image || x.customer_image!=null">
+          </ion-col>
+          <ion-col size="10">
+            <ion-row>
+              <ion-col size="8" style="font-size: 80%;">
+                <b> {{x.customer_name}} </b>
+              </ion-col>
+              <ion-col size="4" style="font-size: 80%; white-space: nowrap;">
+                <font id=''>{{x.ride_status}}</font>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!x.trip_end_time">
+              <ion-col size="4">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.transaction_date | date:'dd MMM-YY'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='time' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'> N/A </font>
+              </ion-col>
+              <ion-col size="4">
+                <!--<ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b>{{x.trip_price |
+                  currency:'INR'}}</b>-->
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!!x.trip_end_time">
+              <ion-col size="4">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.trip_end_time | date:'dd MMM-YY'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='time' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'> N/A </font>
+              </ion-col>
+              <ion-col size="4">
+                <!--<ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b>{{x.trip_price |
+                  currency:'INR'}}</b>-->
+              </ion-col>
+            </ion-row>
+
+
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div (click)='gotopages(x.id,x.current_status,x.payment)' *ngIf='x.current_status == 4'
+        style='background-color: #e1e1fc;padding:3%; border-radius: 10px;'>
+        <ion-row>
+          <ion-col size="2">
+            <img src='https://quickcabtaxiservice.com/storage/app/public/customer.png'
+              style="height: 35px;width:35px;border-radius:100%;box-shadow: blueviolet 0px 0px 5px;"
+              *ngIf="!x.customer_image || x.customer_image==null">
+            <img src='{{imagepath}}{{x.customer_image}}'
+              style="height: 35px;width:35px;border-radius:100%;box-shadow: blueviolet 0px 0px 5px;"
+              *ngIf="!!x.customer_image || x.customer_image!=null">
+          </ion-col>
+          <ion-col size="10">
+            <ion-row>
+              <ion-col size="8" style="font-size: 80%;">
+                <b> {{x.customer_name}} </b>
+              </ion-col>
+              <ion-col size="4" style="font-size: 80%; white-space: nowrap;">
+                <font id=''>{{x.ride_status}}</font>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!x.trip_end_time">
+              <ion-col size="4">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.transaction_date | date:'dd MMM-YY'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='time' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'> Not Found </font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b>{{x.trip_price |
+                  currency:'INR'}}</b>
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!!x.trip_end_time">
+              <ion-col size="4">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.trip_end_time | date:'dd MMM-YY'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='time' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.trip_end_time | date:'shortTime'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b> {{x.trip_price |
+                  currency:'INR'}}</b>
+              </ion-col>
+            </ion-row>
+
+
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div (click)='gotopages(x.id,x.current_status,x.payment)' *ngIf='x.current_status == 5'
+        style='background-color: #f37e73;padding:3%; border-radius: 10px;'>
+        <ion-row>
+          <ion-col size="2">
+            <img src='https://quickcabtaxiservice.com/storage/app/public/customer.png'
+              style="height: 35px;width:35px;border-radius:100%;box-shadow: #fd9e60 0px 0px 5px;"
+              *ngIf="!x.customer_image || x.customer_image==null">
+            <img src='{{imagepath}}{{x.customer_image}}'
+              style="height: 35px;width:35px;border-radius:100%;box-shadow: #fd9e60 0px 0px 5px;"
+              *ngIf="!!x.customer_image || x.customer_image!=null">
+          </ion-col>
+          <ion-col size="10">
+            <ion-row>
+              <ion-col size="8" style="font-size: 80%;">
+                <b> {{x.customer_name}}</b>
+              </ion-col>
+              <ion-col size="4" style="font-size: 80%; white-space: nowrap;">
+                <font id=''>{{x.ride_status}}</font>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!x.trip_end_time">
+              <ion-col size="4">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.transaction_date | date:'dd MMM-YY'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='time' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'> N/A </font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b>{{x.trip_price |
+                  currency:'INR'}}</b>
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!!x.trip_end_time">
+              <ion-col size="4">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.trip_end_time | date:'dd MMM-YY'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='time' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'> N/A </font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b>{{x.trip_price |
+                  currency:'INR'}}</b>
+              </ion-col>
+            </ion-row>
+
+
+          </ion-col>
+        </ion-row>
+      </div>
+
+    </div>
+
+    
+    <div *ngIf="x.tripType == 2">
+
+      <div (click)='gotopages_round(x.id,x.current_status,x.payment,x.round_current_status)'
+        *ngIf='x.current_status == 1 || x.current_status == 2 || x.current_status == 3'
+        style='background-color: #dceed8;padding:3%; border-radius: 10px;'>
+        <ion-row>
+          <ion-col size="2">
+            <img src='https://quickcabtaxiservice.com/storage/app/public/customer.png'
+              style="height: 35px;width:35px;border-radius:100%;" *ngIf="!x.customer_image || x.customer_image==null">
+            <img src='{{imagepath}}{{x.customer_image}}' style="height: 35px;width:35px;border-radius:100%;"
+              *ngIf="!!x.customer_image || x.customer_image!=null">
+          </ion-col>
+          <ion-col size="10">
+            <ion-row>
+              <ion-col size="8" style="font-size: 85%;">
+                <b> {{x.customer_name}} <span *ngIf="x.tripType == 2"></span></b>
+              </ion-col>
+              <ion-col size="4" style="font-size: 85%; white-space: nowrap;">
+                <font id=''>{{x.ride_status}} <span *ngIf="x.tripType == 2">(RT)</span></font>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!x.trip_start_time">
+              <ion-col size="4">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.transaction_date | date:'dd MMM-YY'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='time' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'> N/A </font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b>{{x.trip_price |
+                  currency:'INR'}}</b>
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!!x.trip_start_time">
+              <ion-col size="4">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.trip_start_time | date:'dd MMM-YY'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='time' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.trip_start_time | date:'shortTime'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b>{{x.trip_price |
+                  currency:'INR'}}</b>
+              </ion-col>
+            </ion-row>
+
+
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div (click)='gotopages_round(x.id,x.current_status,x.payment,x.round_current_status)' *ngIf=' x.current_status == 6'
+        style='background-color: #fcd8bf;padding:3%; border-radius: 10px;'>
+        <ion-row>
+          <ion-col size="2">
+            <img src='https://quickcabtaxiservice.com/storage/app/public/customer.png'
+              style="height: 35px;width:35px;border-radius:100%;" *ngIf="!x.customer_image || x.customer_image==null">
+            <img src='{{imagepath}}{{x.customer_image}}' style="height: 35px;width:35px;border-radius:100%;"
+              *ngIf="!!x.customer_image || x.customer_image!=null">
+          </ion-col>
+          <ion-col size="10">
+            <ion-row>
+              <ion-col size="8" style="font-size: 80%;">
+                <b> {{x.customer_name}}  </b>
+              </ion-col>
+              <ion-col size="4" style="font-size: 80%; white-space: nowrap;">
+                <font id=''>{{x.ride_status}} <span *ngIf="x.tripType == 2">(RT)</span></font>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!x.trip_end_time">
+              <ion-col size="4">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.transaction_date | date:'dd MMM-YY'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='time' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'> N/A </font>
+              </ion-col>
+              <ion-col size="4">
+                <!--<ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b>{{x.trip_price |
+                  currency:'INR'}}</b>-->
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!!x.trip_end_time">
+              <ion-col size="4">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.trip_end_time | date:'dd MMM-YY'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='time' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'> N/A </font>
+              </ion-col>
+              <ion-col size="4">
+                <!--<ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b>{{x.trip_price |
+                  currency:'INR'}}</b>-->
+              </ion-col>
+            </ion-row>
+
+
+          </ion-col>
+        </ion-row>
+      </div>
+    
+
+      <div (click)='gotopages_round(x.id,x.current_status,x.payment,x.round_current_status)' *ngIf='x.current_status == 5'
+        style='background-color: #f37e73;padding:3%; border-radius: 10px;'>
+        <ion-row>
+          <ion-col size="2">
+            <img src='https://quickcabtaxiservice.com/storage/app/public/customer.png'
+              style="height: 35px;width:35px;border-radius:100%;box-shadow: #fd9e60 0px 0px 5px;"
+              *ngIf="!x.customer_image || x.customer_image==null">
+            <img src='{{imagepath}}{{x.customer_image}}'
+              style="height: 35px;width:35px;border-radius:100%;box-shadow: #fd9e60 0px 0px 5px;"
+              *ngIf="!!x.customer_image || x.customer_image!=null">
+          </ion-col>
+          <ion-col size="10">
+            <ion-row>
+              <ion-col size="8" style="font-size: 80%;">
+                <b> {{x.customer_name}} <span *ngIf="x.tripType == 2"></span></b>
+              </ion-col>
+              <ion-col size="4" style="font-size: 80%; white-space: nowrap;">
+                <font id=''>{{x.ride_status}} <span *ngIf="x.tripType == 2">(RT)</span></font>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!x.trip_end_time">
+              <ion-col size="4">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.transaction_date | date:'dd MMM-YY'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='time' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'> N/A </font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b>{{x.trip_price |
+                  currency:'INR'}}</b>
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!!x.trip_end_time">
+              <ion-col size="4">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.trip_end_time | date:'dd MMM-YY'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='time' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'> N/A </font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b>{{x.trip_price |
+                  currency:'INR'}}</b>
+              </ion-col>
+            </ion-row>
+
+
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div (click)='gotopages_round(x.id,x.current_status,x.payment,x.round_current_status)' *ngIf='x.current_status == 4 && x.round_current_status == 4'
+        style='background-color: #e1e1fc;padding:3%; border-radius: 10px;'>
+        <ion-row>
+          <ion-col size="2">
+            <img src='https://quickcabtaxiservice.com/storage/app/public/customer.png'
+              style="height: 35px;width:35px;border-radius:100%;box-shadow: blueviolet 0px 0px 5px;"
+              *ngIf="!x.customer_image || x.customer_image==null">
+            <img src='{{imagepath}}{{x.customer_image}}'
+              style="height: 35px;width:35px;border-radius:100%;box-shadow: blueviolet 0px 0px 5px;"
+              *ngIf="!!x.customer_image || x.customer_image!=null">
+          </ion-col>
+          <ion-col size="10">
+            <ion-row>
+              <ion-col size="8" style="font-size: 80%;">
+                <b> {{x.customer_name}} <span *ngIf="x.tripType == 2"></span></b>
+              </ion-col>
+              <ion-col size="4" style="font-size: 80%; white-space: nowrap;">
+                <font id=''>{{x.ride_status}} <span *ngIf="x.tripType == 2">(RT)</span></font>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!x.trip_end_time">
+              <ion-col size="4">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.transaction_date | date:'dd MMM-YY'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='time' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'> Not Found </font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b>{{x.trip_price |
+                  currency:'INR'}}</b>
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!!x.trip_end_time">
+              <ion-col size="6">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.trip_start_time | date:'dd MMM-YY'}} | {{x.trip_end_time | date:'shortTime'}} </font>
+              </ion-col>
+              <ion-col size="6">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.round_trip_end_time | date:'dd MMM-YY'}} | {{x.round_trip_end_time | date:'shortTime'}} </font>
+              </ion-col>
+             
+            </ion-row>
+
+           
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!!x.trip_end_time">
+              <ion-col size="12">
+                <ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b> {{x.trip_price |
+                  currency:'INR'}}</b>
+              </ion-col>
+            </ion-row>
+
+
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div (click)='gotopages_round(x.id,x.current_status,x.payment,x.round_current_status)'
+        *ngIf='x.current_status == 4 && (x.round_current_status == 2 || x.round_current_status == 3)'
+        style='background-color: #dceed8;padding:3%; border-radius: 10px;'>
+        <ion-row>
+          <ion-col size="2">
+            <img src='https://quickcabtaxiservice.com/storage/app/public/customer.png'
+              style="height: 35px;width:35px;border-radius:100%;" *ngIf="!x.customer_image || x.customer_image==null">
+            <img src='{{imagepath}}{{x.customer_image}}' style="height: 35px;width:35px;border-radius:100%;"
+              *ngIf="!!x.customer_image || x.customer_image!=null">
+          </ion-col>
+          <ion-col size="10">
+            <ion-row>
+              <ion-col size="8" style="font-size: 85%;">
+                <b> {{x.customer_name}} <span *ngIf="x.tripType == 2"></span></b>
+              </ion-col>
+              <ion-col size="4" style="font-size: 85%; white-space: nowrap;">
+                <font id=''>{{x.ride_status}} <span *ngIf="x.tripType == 2">(RT)</span></font>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12" style="font-size: 85%;">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp; <b style="color:#03ad5f"> First Trip Completed</b>
+              </ion-col>
+             
+            </ion-row>
+
+            <ion-row>
+             
+              <ion-col size="12" style="font-size: 85%;">
+                <ion-icon name='time' style="color:#ffbc01;"></ion-icon> &nbsp; <b style="color:#f57b11">Waiting For Round Trip</b>
+              </ion-col>
+            </ion-row>
+
+
+
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div (click)='gotopages_round(x.id,x.current_status,x.payment,x.round_current_status)' *ngIf='x.current_status == 4 && (x.round_current_status == 5 || x.round_current_status == 6)'
+        style='background-color: #e1e1fc;padding:3%; border-radius: 10px;'>
+        <ion-row>
+          <ion-col size="2">
+            <img src='https://quickcabtaxiservice.com/storage/app/public/customer.png'
+              style="height: 35px;width:35px;border-radius:100%;box-shadow: blueviolet 0px 0px 5px;"
+              *ngIf="!x.customer_image || x.customer_image==null">
+            <img src='{{imagepath}}{{x.customer_image}}'
+              style="height: 35px;width:35px;border-radius:100%;box-shadow: blueviolet 0px 0px 5px;"
+              *ngIf="!!x.customer_image || x.customer_image!=null">
+          </ion-col>
+          <ion-col size="10">
+            <ion-row>
+              <ion-col size="8" style="font-size: 80%;">
+                <b> {{x.customer_name}} <span *ngIf="x.tripType == 2"></span></b>
+              </ion-col>
+              <ion-col size="4" style="font-size: 80%; white-space: nowrap;">
+                <font id=''>{{x.ride_status}} <span *ngIf="x.tripType == 2">(RT)</span></font>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12" style="font-size: 85%;">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp; <b style="color:#03ad5f"> First Trip Completed</b>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12" style="font-size: 85%;">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp; <b><span style="color: rgb(233, 12, 12);">{{x.ride_status}}</span></b>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!x.trip_end_time">
+              <ion-col size="4">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.transaction_date | date:'dd MMM-YY'}}</font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='time' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'> Not Found </font>
+              </ion-col>
+              <ion-col size="4">
+                <ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b>{{x.trip_price |
+                  currency:'INR'}}</b>
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row style="margin-top:2%;font-size:80%;" *ngIf="!!x.trip_end_time">
+              <ion-col size="6">
+                <ion-icon name='calendar' style="color:#ffbc01;"></ion-icon> &nbsp;
+                <font style='font-size:85%'>{{x.trip_start_time | date:'dd MMM-YY'}} | {{x.trip_end_time | date:'shortTime'}} </font>
+              </ion-col>
+              <ion-col size="6">
+                <ion-icon name='wallet' style="color:#ffbc01;"></ion-icon> &nbsp; <b> {{x.trip_price |
+                  currency:'INR'}}</b>
+              </ion-col>
+            </ion-row>
+
+
+          </ion-col>
+        </ion-row>
+      </div>
+
+    </div>
+
+    </div>
+  </div>
+
+  <div id='driverrides' *ngIf="driverhistory_count == 0"  style="text-align: center;">
+    <div class="no_record">Sorry! No Records Found.</div>
+    
+  </div>
+
+</ion-content>
+
+<!--<ion-fab *ngIf='bookingcount > 0' vertical="bottom" horizontal="center" (click)='viewbookings()'>
+  <ion-button style="height:40px;--background:#ffbc01;color:royalblue;font-weight: bold;">
+    <ion-icon name='car'></ion-icon> &nbsp;&nbsp; {{bookingcount}}
+  </ion-button>
+</ion-fab>-->
+
+<div *ngIf='bookingcount > 0' class="booking_value_access">
+  <div class="booking_value_inner">
+    <h5>You have New {{bookingcount}} Booking</h5>   
+
+  <ion-button (click)='viewbookings()' style="height:40px;--background:#ffbc01;color:royalblue;font-weight: bold;">
+    View Booking&nbsp;<ion-icon name='car'></ion-icon>&nbsp;&nbsp; {{bookingcount}}
+  </ion-button>
+  </div>
+</div>
+
+<!--<audio *ngIf='bookingcount > 0' id='bgalert' controls autoplay loop style="display: none;">
+  <source src="../../../assets/car_alarm.mp3" type="audio/mp3">
+</audio>-->

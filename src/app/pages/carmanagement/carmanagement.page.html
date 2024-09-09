@@ -1,0 +1,458 @@
+<ion-header [class]="isAndroid? 'android-header' : ''">
+  <ion-toolbar style="text-align: center; --background:#ffbc01;">
+    <ion-row>
+      <ion-col size="3" style="padding-top: 4%;padding-left:5%;text-align: left;">
+        <ion-icon name="menu" (click)='menuon()'></ion-icon>
+      </ion-col>
+      <ion-col size="6" style="padding-top: 4%;text-align: center;" id='onoff'>Car Management</ion-col>
+      <ion-col size="3" style="padding-top: 4%;padding-right:5%;text-align: right;">
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf='present==false'>
+  <ion-img src='https://quickcabtaxiservice.com/storage/app/public/car_headerbg.png'
+    style="width: 70%; position:relative;left:15%;"></ion-img>
+  <div id='contentdiv'>
+
+
+
+    <ion-row style="width: 100%;">
+      <ion-col>
+        <h5 style="font-size: 85%;"> Transport Type </h5>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%;">
+      <ion-col>
+        <ion-input type="text" readonly="true" style="border:#cecece 1px solid;" (click)='opentypetypes()'>
+          <font style="padding-left: 3%; width:100%;" id='types'>Select A Transport Type</font>
+          <font id='typeids' style="display: none;"></font>
+          <ion-icon name="chevron-down" style="position: absolute; right:2%"></ion-icon>
+        </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="width: 100%;">
+      <ion-col>
+        <h5 style="font-size: 85%;"> Transport Model </h5>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%;">
+      <ion-col>
+        <ion-input type="text" readonly="true" style="border:#cecece 1px solid;" (click)='openmodeltypes()'>
+          <font style="padding-left: 3%; width:100%;" id='models'>Select Your Car</font>
+          <font id='modelids' style="display: none;"></font>
+          <ion-icon name="chevron-down" style="position: absolute; right:2%"></ion-icon>
+        </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="width: 100%;">
+      <ion-col>
+        <h5 style="font-size: 85%;"> Transport Color </h5>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%;">
+      <ion-col>
+        <ion-input type="text" readonly="true" style="border:#cecece 1px solid;" (click)='opencolortypes()'>
+          <font style="padding-left: 3%; width:100%;" id='colors'>Select Color</font>
+          <font id='colorids' style="display: none;"></font>
+          <ion-icon name="chevron-down" style="position: absolute; right:2%"></ion-icon>
+        </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="width: 100%;">
+      <ion-col size="6">
+        <h5 style="font-size: 85%;"> Car Registration Number </h5>
+      </ion-col>
+      <ion-col size="6">
+        <h5 style="font-size: 85%;"> Fuel Type </h5>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%;">
+      <ion-col size="6">
+        <ion-input type="text" autocapitalize="true" id='carreg' style="border:#cecece 1px solid;"
+          (keyup)='capzcarregno()'>
+        </ion-input>
+      </ion-col>
+      <ion-col size="6">
+        <ion-input type="text" readonly="true" style="border:#cecece 1px solid;" (click)='openfueltypes()'>
+          <font style="padding-left: 3%; width:100%;" id='fuels'>Select Fuel Type</font>
+          <ion-icon name="chevron-down" style="position: absolute; right:2%"></ion-icon>
+        </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="width: 100%;">
+      <ion-col size="6">
+        <h5 style="font-size: 85%;"> Date Of Manufacturing </h5>
+      </ion-col>
+      <ion-col size="6">
+        <h5 style="font-size: 85%;"> Date Of Registration </h5>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%;">
+      <ion-col size="6">
+        <ion-input type="text" readonly="true" style="border:#cecece 1px solid;" (click)='openmfgdate()'>
+          <font style="padding-left: 3%; width:100%;" id="mfgdate"></font>
+          <ion-icon name="calendar" style="position: absolute; right:2%"></ion-icon>
+        </ion-input>
+      </ion-col>
+      <ion-col size="6">
+        <ion-input type="text" readonly="true" style="border:#cecece 1px solid;" (click)='openregdate()'>
+          <font style="padding-left: 3%; width:100%;" id='regdate'></font>
+          <ion-icon name="calendar" style="position: absolute; right:2%"></ion-icon>
+        </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="width: 100%;">
+      <ion-col style="text-align: center;">
+        <h4 style="font-size: 90%;"><b>
+            Please Upload Your Car Registration <br> Certificates Below
+          </b></h4>
+      </ion-col>
+    </ion-row>
+
+    <ion-item lines="none">
+      <ion-row style="width: 100%;background-color: #f2eaea;">
+        <ion-col size="4"></ion-col>
+        <ion-col size="4" style="text-align: center;">
+          FRONT
+        </ion-col>
+        <ion-col size="4" style="text-align: right;">
+          <ion-icon name="trash-sharp" style="color:red" (click)='delfront()'></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row style="width: 100%;">
+        <ion-col>
+          <div style="width: 100%;height:120px;" id='divfront' *ngIf="frontfile==''">
+            <ion-fab vertical="center" horizontal="center" style="box-shadow: none;" (click)='openchooserfront()'>
+              <ion-fab-button color="light">
+                <ion-icon name="camera"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+          </div>
+          <div id='divfront' style='text-align:center;' *ngIf="frontfile!=''">
+            <img src='{{frontfile}}' width="100" height="100">
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-row style="width: 100%;background-color: #f2eaea;">
+        <ion-col size="4"></ion-col>
+        <ion-col size="4" style="text-align: center;">
+          BACK
+        </ion-col>
+        <ion-col size="4" style="text-align: right;">
+          <ion-icon name="trash-sharp" style="color:red" (click)='delback()'></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row style="width: 100%;">
+        <ion-col>
+          <div style="width: 100%;height:120px;" id='divback' *ngIf="backfile==''">
+            <ion-fab vertical="center" horizontal="center" style="box-shadow: none;" (click)='openchooser()'>
+              <ion-fab-button color="light">
+                <ion-icon name="camera"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+          </div>
+          <div id='divback' style='text-align:center;' *ngIf="backfile!=''">
+            <img src='{{backfile}}' width="100" height="100">
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-button style="--background:#ffbc01;color:#ffffff;height: 50px;width:95%;" (click)='submitdata()'> APPLY
+    </ion-button>
+  </div>
+</ion-content>
+
+<div id='optionchooser'
+  style="position: absolute;margin-bottom: 55px;left:5%;width:90%;background-color: #ffffff; display: none; box-shadow: grey 0px 0px 10px;">
+  <ion-item style="width: 100%;text-align: center; --background: #ffbc01;margin-top:-2%" (click)='closechooser()'>
+    <ion-icon name="close" style="font-size: 130%;"></ion-icon> &nbsp; &nbsp; &nbsp; &nbsp; Close
+  </ion-item>
+  <ion-item style="width: 100%;text-align: center;" (click)='opencamera()'>
+    <ion-icon name="camera" style="font-size: 130%;"></ion-icon> &nbsp; &nbsp; &nbsp; &nbsp; CAMERA
+  </ion-item>
+  <ion-item style="width: 100%; text-align: center;" (click)='openfilemanager()'>
+    <ion-icon name="documents" style="font-size: 130%;"></ion-icon> &nbsp; &nbsp; &nbsp; &nbsp; FILE MANAGER
+  </ion-item>
+</div>
+
+
+<div id='optionchooserfront'
+  style="position: absolute;margin-bottom: 55px;left:5%;width:90%;background-color: #ffffff; display: none; box-shadow: black 1px 2px 30px;">
+  <ion-item style="width: 100%;text-align: center; --background: #ffbc01;margin-top:-2%;" (click)='closechooserfront()'>
+    <ion-icon name="close" style="font-size: 130%;"></ion-icon> &nbsp; &nbsp; &nbsp; &nbsp; Close
+  </ion-item>
+  <ion-item style="width: 100%;text-align: center;" (click)='opencamerafront()'>
+    <ion-icon name="camera" style="font-size: 130%;"></ion-icon> &nbsp; &nbsp; &nbsp; &nbsp; CAMERA
+  </ion-item>
+  <ion-item style="width: 100%; text-align: center;" (click)='openfilemanagerfront()'>
+    <ion-icon name="documents" style="font-size: 130%;"></ion-icon> &nbsp; &nbsp; &nbsp; &nbsp; FILE MANAGER
+  </ion-item>
+</div>
+
+<div id='fuelchooser' style="min-height: 100px;">
+  <ion-item style="text-align: center; --background: #ffbc01;color:white;margin-top:0%;" (click)='closefueltypes()'>
+    <ion-icon name="close-circle"></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp; <font color='white'>CANCEL</font>
+  </ion-item>
+
+  <ion-row *ngFor='let f of fueltypes' style="width:100%;padding-top:2%;">
+    <ion-col style="text-align: left;border-bottom:1px solid grey;" (click)='getfueltype(f)' size="12">
+      <ion-icon name='rocket'></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp;{{f}}
+    </ion-col>
+  </ion-row>
+
+</div>
+
+<div id='colorchooser' style="min-height: 100px;">
+  <ion-item style="text-align: center; --background: #ffbc01;color:white;margin-top:0%;" (click)='closecolortypes()'>
+    <ion-icon name="close-circle"></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp; <font color='white'>CANCEL</font>
+  </ion-item>
+
+  <ion-row style="width:100%; padding-top:2%;" *ngFor='let t of transcolors'>
+    <ion-col style="text-align: left; border-bottom:1px solid grey;" (click)='getcolortypes(t.color,t.id)' size="12">
+      <ion-icon name='color-palette'></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp;{{t.color}}
+    </ion-col>
+  </ion-row>
+
+</div>
+
+<div id='modelchooser' style="min-height: 100px;">
+  <ion-item style="text-align: center; --background: #ffbc01;color:white;margin-top:0%;" (click)='closemodeltypes()'>
+    <ion-icon name="close-circle"></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp; <font color='white'>CANCEL</font>
+  </ion-item>
+  <ion-row *ngFor='let t of transmodels' style="width:100%;padding-top:2%;">
+    <ion-col style="text-align: left;border-bottom:1px solid grey;" (click)='getmodeltypes(t.model,t.id)' size="12">
+      <ion-icon name='car-sport'></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp;{{t.model}}
+    </ion-col>
+  </ion-row>
+
+  <br><br>
+</div>
+
+<div id='typechooser' style="min-height: 100px;padding-top:2%;">
+  <ion-item style="text-align: center; --background: #ffbc01;color:white;margin-top:-05%;" (click)='closetypetypes()'>
+    <ion-icon name="close-circle"></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp; <font color='white'>CANCEL</font>
+  </ion-item>
+
+  <ion-row *ngFor='let t of transtypes' style="width:100%">
+    <ion-col style="text-align: left;border-bottom:1px solid grey;" (click)='gettypetypes(t.name,t.id)' size="12">
+      <ion-icon name='car'></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp;{{t.name}}
+    </ion-col>
+  </ion-row>
+
+</div>
+
+<ion-content *ngIf='present == true'>
+  <ion-img src='https://quickcabtaxiservice.com/storage/app/public/car_headerbg.png'
+    style="width: 70%; position:relative;left:15%;"></ion-img>
+  <div id='contentdiv'>
+
+
+
+    <ion-row style="width: 100%;">
+      <ion-col>
+        <h5 style="font-size: 85%;"> Transport Type </h5>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%;">
+      <ion-col>
+        <ion-input type="text" readonly="true" style="border:#cecece 1px solid;">
+          <font style="padding-left: 3%; width:100%;" id='types'>{{presentdata.name}}</font>
+          <font id='typeids' style="display: none;"></font>
+          <ion-icon name="chevron-down" style="position: absolute; right:2%"></ion-icon>
+        </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="width: 100%;">
+      <ion-col>
+        <h5 style="font-size: 85%;"> Transport Model </h5>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%;">
+      <ion-col>
+        <ion-input type="text" readonly="true" style="border:#cecece 1px solid;">
+          <font style="padding-left: 3%; width:100%;" id='models'>{{presentdata.model}}</font>
+          <font id='modelids' style="display: none;"></font>
+          <ion-icon name="chevron-down" style="position: absolute; right:2%"></ion-icon>
+        </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="width: 100%;">
+      <ion-col>
+        <h5 style="font-size: 85%;"> Transport Color </h5>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%;">
+      <ion-col>
+        <ion-input type="text" readonly="true" style="border:#cecece 1px solid;">
+          <font style="padding-left: 3%; width:100%;" id='colors'>{{presentdata.color}}</font>
+          <font id='colorids' style="display: none;"></font>
+          <ion-icon name="chevron-down" style="position: absolute; right:2%"></ion-icon>
+        </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="width: 100%;">
+      <ion-col size="6">
+        <h5 style="font-size: 85%;"> Car Registration Number </h5>
+      </ion-col>
+      <ion-col size="6">
+        <h5 style="font-size: 85%;"> Fuel Type </h5>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%;">
+      <ion-col size="6">
+        <ion-input type="text" id='carreg' style="border:#cecece 1px solid;" readonly="true"
+          value="{{presentdata.car_registration | uppercase}}">
+        </ion-input>
+      </ion-col>
+      <ion-col size="6">
+        <ion-input type="text" readonly="true" style="border:#cecece 1px solid;">
+          <font style="padding-left: 3%; width:100%;" id='fuels'>{{presentdata.driver_trans_fuel}}</font>
+          <ion-icon name="chevron-down" style="position: absolute; right:2%"></ion-icon>
+        </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="width: 100%;">
+      <ion-col size="6">
+        <h5 style="font-size: 85%;"> Date Of Manufacturing </h5>
+      </ion-col>
+      <ion-col size="6">
+        <h5 style="font-size: 85%;"> Date Of Registration </h5>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%;">
+      <ion-col size="6">
+        <ion-input type="text" readonly="true" style="border:#cecece 1px solid;">
+          <font style="padding-left: 3%; width:100%;" id="mfgdate">{{presentdata.mfgdate | date}}</font>
+          <ion-icon name="calendar" style="position: absolute; right:2%"></ion-icon>
+        </ion-input>
+      </ion-col>
+      <ion-col size="6">
+        <ion-input type="text" readonly="true" style="border:#cecece 1px solid;">
+          <font style="padding-left: 3%; width:100%;" id='regdate'>{{presentdata.regdate | date}}</font>
+          <ion-icon name="calendar" style="position: absolute; right:2%"></ion-icon>
+        </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="width: 100%;">
+      <ion-col style="text-align: center;">
+        <h4 style="font-size: 90%;"><b>
+            Please Upload Your Car Registration <br> Certificates Below
+          </b></h4>
+      </ion-col>
+    </ion-row>
+
+    <ion-item lines="none">
+      <ion-row style="width: 100%;background-color: #f2eaea;">
+        <ion-col size="4"></ion-col>
+        <ion-col size="4" style="text-align: center;">
+          FRONT
+        </ion-col>
+        <ion-col size="4" style="text-align: right;">
+          <!-- <ion-icon name="trash-sharp" style="color:red" (click)='delfront()'></ion-icon> -->
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row style="width: 100%;">
+        <ion-col style="text-align: center;">
+          <!-- <div style="width: 100%;height:120px;" id='divfront' *ngIf="frontfile==''">
+            <ion-fab vertical="center" horizontal="center" style="box-shadow: none;" (click)='openchooserfront()'>
+              <ion-fab-button color="light">
+                <ion-icon name="camera"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+          </div>
+          <div id='divfront' style='text-align:center;' *ngIf="frontfile!=''">
+            <img src='{{frontfile}}' width="100" height="100">
+          </div> -->
+
+          <img src="{{presentdata.cert_front_img}}" width="100" height="100">
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-row style="width: 100%;background-color: #f2eaea;">
+        <ion-col size="4"></ion-col>
+        <ion-col size="4" style="text-align: center;">
+          BACK
+        </ion-col>
+        <ion-col size="4" style="text-align: right;">
+          <!-- <ion-icon name="trash-sharp" style="color:red" (click)='delback()'></ion-icon> -->
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row style="width: 100%;">
+        <ion-col style="text-align: center;">
+          <!-- <div style="width: 100%;height:120px;" id='divback' *ngIf="backfile==''">
+            <ion-fab vertical="center" horizontal="center" style="box-shadow: none;" (click)='openchooser()'>
+              <ion-fab-button color="light">
+                <ion-icon name="camera"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+          </div>
+          <div id='divback' style='text-align:center;' *ngIf="backfile!=''">
+            <img src='{{backfile}}' width="100" height="100">
+          </div> -->
+          <img src="{{presentdata.cert_back_img}}" width="100" height="100">
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-button style="--background:#444342;color:#ffffff;height: 50px;width:95%;" [disabled]="true"> APPLY
+    </ion-button>
+  </div>
+
+
+  
+
+</ion-content>
+
+<!--<ion-fab *ngIf='bookingcount > 0' vertical="bottom" horizontal="center" (click)='viewbookings()'>
+  <ion-button style="height:40px;--background:#ffbc01;color:royalblue;font-weight: bold;">
+    <ion-icon name='car'></ion-icon> &nbsp;&nbsp; {{bookingcount}}
+  </ion-button>
+</ion-fab>-->
+
+<div  *ngIf='bookingcount > 0' class="booking_value_access">
+  <div class="booking_value_inner">
+
+    <h5>You have New {{bookingcount}} Booking</h5>
+     
+  <ion-button (click)='viewbookings()' style="height:40px;--background:#ffbc01;color:royalblue;font-weight: bold;">
+    View Booking&nbsp;<ion-icon name='car'></ion-icon>&nbsp;&nbsp; {{bookingcount}}
+  </ion-button>
+
+  </div>
+
+</div>
+
+
+<!--<audio *ngIf='bookingcount > 0' id='bgalert' controls autoplay loop style="display: none;">
+  <source src="../../../assets/car_alarm.mp3" type="audio/mp3">
+</audio>-->

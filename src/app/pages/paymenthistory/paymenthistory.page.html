@@ -1,0 +1,85 @@
+<ion-header [class]="isAndroid? 'android-header' : ''">
+  <ion-toolbar style="text-align: center; --background:#ffbc01;">
+    <ion-row>
+      <ion-col size="3" style="padding-top: 4%;padding-left:5%;text-align: left;">
+        <ion-icon name="menu" (click)='menuon()'></ion-icon>
+      </ion-col>
+      <ion-col size="6" style="padding-top: 4%;text-align: center;" id='onoff'>Payment History</ion-col>
+      <ion-col size="3" style="padding-top: 4%;padding-right:5%;text-align: right;">
+        <!-- <ion-icon name="information-circle" style="font-size: 130%;" (click)='showsummary()'></ion-icon> -->
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <div style="padding-bottom: 70px;" id='allhist' *ngIf='driverhistory != []'>
+    <div class='driverrides' *ngFor="let x of driverhistory">
+      <div *ngIf="x.current_status == 4">
+        <ion-row>
+          <ion-col size="2">
+            <img src='{{x.customer_image}}' style="height: 35px;width:35px;border-radius:100%;">
+          </ion-col>
+          <ion-col size="10">
+            <ion-row>
+              <ion-col size="7" style="font-size: 80%;">
+                <b> {{x.customer_name}} <span *ngIf="x.tripType == 2">(RT)</span></b> 
+              </ion-col>
+              <ion-col size="5" style="font-size: 80%; white-space: nowrap;">
+                <ion-icon name='wallet' style="color:#ffbc01"></ion-icon>
+                &nbsp;
+                <font id='tripprice'><b>{{x.trip_price | currency:'INR'}}</b></font>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top:0%;font-size:80%;text-align: center;">
+          <ion-col>
+            <ion-icon name='calendar'></ion-icon> &nbsp;
+            <font style='font-size:85%'>{{x.transaction_date | date}}</font>
+          </ion-col>
+          <ion-col>
+            <ion-icon name='time'></ion-icon> &nbsp;
+            <font style='font-size:85%'> {{x.trip_end_time | date:'shortTime'}}</font>
+          </ion-col>
+          <ion-col>
+            <ion-icon name='navigate'></ion-icon> &nbsp; <font style='font-size:85%;color:rgb(7, 7, 7);'>
+              {{x.distance}} KM</font>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </div>
+
+  <div id='driverrides' *ngIf="driverhistory_count == 0" style="text-align: center;">
+    <div class="no_record">Sorry! No Records Found.</div>
+  </div>
+</ion-content>
+
+<!--<ion-fab *ngIf='bookingcount > 0' vertical="bottom" horizontal="center" (click)='viewbookings()'>
+  <ion-button style="height:40px;--background:#ffbc01;color:royalblue;font-weight: bold;">
+    <ion-icon name='car'></ion-icon> &nbsp;&nbsp; {{bookingcount}}
+  </ion-button>
+</ion-fab>-->
+
+<div *ngIf='bookingcount > 0' class="booking_value_access">
+
+  <div class="booking_value_inner">
+
+    <h5>You have New {{bookingcount}} Booking</h5>
+   
+
+  <ion-button (click)='viewbookings()' style="height:40px;--background:#ffbc01;color:royalblue;font-weight: bold;">
+    View Booking&nbsp;<ion-icon name='car'></ion-icon>&nbsp;&nbsp; {{bookingcount}}
+  </ion-button>
+
+
+  </div>
+
+
+</div>
+
+<!--<audio *ngIf='bookingcount > 0' id='bgalert' controls autoplay loop style="display: none;">
+  <source src="../../../assets/car_alarm.mp3" type="audio/mp3">
+</audio>-->

@@ -1,0 +1,62 @@
+ion-content{
+    --background:white;
+}
+.driverrides{
+    width:95%;
+    margin:auto;
+    border-bottom:grey 1px solid;
+    border-radius: 5px;
+    padding:2%;
+    margin-top:2.5%;
+    background-color: #ede7d9;
+}
+.driverrides ion-icon{
+    color: #ffbc01;
+}
+
+#statusindicator{
+    background-color: #8dcbc5;
+    padding:10%;
+    font-size: 80%;
+    border-radius:0px;
+}
+
+.no_record{
+    background: #ffbc01;
+    margin: 10%;
+    width: 80%;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    padding: 4%;
+    border-radius: 4px;
+}
+
+.booking_value_access{
+    margin-bottom: 20px;
+    width: 100%;
+    top: 50%;
+    position: absolute;
+}
+
+.booking_value_inner{
+    padding: 30px;
+    background: #FDECD7;
+    box-shadow: 0 0px 15px rgb(8 0 0 / 15%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 16px;
+    max-width: 320px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+
+.booking_value_inner h5{
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+}

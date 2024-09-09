@@ -1,0 +1,47 @@
+ion-col{
+    color: #000000;
+    font-weight: bold;
+}
+ion-card-content{
+    line-height: 5pt;
+}
+ion-card{
+    box-shadow: grey 0px 0px 15px;
+    width: 95%;
+    margin: auto;
+    margin-top:5%;
+}
+ion-button{
+    height: 50px;
+    --border-radius:10px;
+}
+ion-toolbar{
+    --background: #ffbc01;
+    text-align: center;
+    font-weight: regular;
+    color:#000000;
+}
+ion-content{
+    --background:#ffffff;
+}
+
+.driverrides{
+    width:100%;
+    margin:auto;
+    box-shadow: grey 0px 0px 0px;
+    border-radius: 0px;
+    padding:2%;
+    // margin-top:5%;
+}
+
+.no_record{
+    background: #ffbc01;
+    margin: 10%;
+    width: 80%;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    padding: 4%;
+    border-radius: 4px;
+}

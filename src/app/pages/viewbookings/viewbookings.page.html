@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    Your New Ride Request Details
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+ 
+
+  <div id='driverrides' *ngIf='bookings.length <=0' style="text-align: center;">
+      <div class="no_record">Sorry! No Records Found.</div>
+  </div>
+
+  <ion-card *ngFor="let x of bookings" style="box-shadow: black 0px 0px 15px;">
+    <ion-card-header style="background-color: #ffffff;">
+      <ion-row>
+        <ion-col size="3" *ngIf="x.customer_image!=='https://quickcabtaxiservice.com/storage/app/public/'">
+          <img src="{{x.customer_image}}" style="height: 50px; width:50px; border-radius:100%;">
+        </ion-col>
+        <ion-col size="3" *ngIf="x.customer_image==='https://quickcabtaxiservice.com/storage/app/public/'">
+          <img src="{{profileimage}}" style="height: 50px; width:50px; border-radius:100%;">
+        </ion-col>
+
+        <ion-col size="5" style="text-align: left;">
+          <b>
+            <h5 style="color: black; font-size: 120%;position: absolute;top:5px;left:-15px;">{{x.customer_name}} <br>
+              <!-- <br>
+              EstimatedFare: <b>{{x.estimated_price|currency:'INR'}}</b> -->
+            </h5>
+
+          </b>
+        </ion-col>
+
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content style="background-color: #e9e9e9; padding-top:1%">
+      <b>
+        <h3 style="font-weight: bold; color:black;">
+          <ion-icon name="radio-button-on" style="color:green"></ion-icon> PICK UP
+        </h3>
+      </b>
+      <br>
+      <h6 style="color:black; font-weight:regular; font-size :85%;">
+
+        {{x.start_address}}
+
+      </h6>
+      <br>
+      <!-- <b>
+        <h3 style="font-weight: bold; color:rgba(208, 203, 203, 0.871);">
+          <ion-icon name="pin" style="color:rgba(211, 206, 206, 0.809)"></ion-icon>DROP OFF
+        </h3>
+      </b>
+      <br>
+      <h6 style="color:black;font-weight:regular; font-size :85%;">
+
+        <!-- {{x.end_address}} -->
+      <!-- <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+
+      </h6> -->
+      <br>
+      <!--<audio *ngIf='bookings.length > 0' controls autoplay loop style="display: none;">
+        <source src="../../../assets/car_alarm.mp3" type="audio/mp3">
+      </audio>-->
+      <ion-row>
+        <ion-col>
+          <ion-button expand="full" style="--background:#ef8d21" (click)='rejectbooking(x.driver_id,x.user_id)'>Ignore
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="full" style="--background:#65e1a3;color:white;border-radius: 10px;"
+            (click)='acceptbooking(x.id,x.driver_id,x.user_id)'>Accept</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab  vertical="bottom" horizontal="center" style="padding-bottom: 10px;">
+    <ion-fab-button color='dark' (click)='gohomepage()'>
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

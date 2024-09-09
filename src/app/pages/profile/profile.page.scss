@@ -1,0 +1,95 @@
+ion-col{
+    text-align: center;
+    font-size: 120%;
+}
+#driverimage{
+    width:110px;
+    height: 110px;
+    border-radius:100%;
+    margin-top:10%;
+    box-shadow: 0px 0px 25px #e3e9fd;
+}
+#driverimagepostservice{
+    width:110px;
+    height: 110px;
+    border-radius:100%;
+    margin-top:10%;margin-left:35%;
+    box-shadow: 0px 0px 25px #e3e9fd;
+    display: none;
+}
+#containertitle{
+    font-size: 16pt;
+    color: #000000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#containerdiv{
+    margin-top:10%;
+    width:85%;
+    margin:auto;
+    text-align: center;
+}
+#editorial{
+    text-align: center;
+    margin: auto;
+    width: 85%;
+    margin-top:10%;
+}
+#submitbtn{
+    --background: #ffbc01;
+    color: #ffffff;
+    font-weight: bold;
+    height: 50px;
+}
+#genderbar{
+    text-align: center;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left:15%;
+    width: 70%;
+    background-color: #ffffff;
+    color:#000000;
+    box-shadow: grey 0px 0px 35px;
+}
+#optionchooser{
+    position: absolute;
+    bottom: -25%;
+    left: 15%;
+    width: 70%;
+    background-color: #1a3a49;
+    color:#ffffff;
+    box-shadow: black 0px 0px 15px;
+    display: none;
+}
+ion-item{
+    --background:white;
+    color:black;
+}
+
+.booking_value_access{
+    margin-bottom: 20px;
+    width: 100%;
+    top: 50%;
+    position: absolute;
+}
+
+.booking_value_inner{
+    padding: 30px;
+    background: #FDECD7;
+    box-shadow: 0 0px 15px rgb(8 0 0 / 15%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 16px;
+    max-width: 320px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+
+.booking_value_inner h5{
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+}

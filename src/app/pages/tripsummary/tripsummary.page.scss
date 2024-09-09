@@ -1,0 +1,42 @@
+ion-content{
+    --background:#ffffff;
+    color:black;
+}
+#map_canvas{
+    width: 100%;
+    height: 100%;
+}
+#startbtn{
+    width:100%;
+    margin: auto;
+    height: 50px;
+    --background: #ffbc01;
+    color: white;
+    border-radius: 0px;
+}
+#otpdiv{
+    position: absolute;
+    bottom:2%;
+    width:90%;
+    left:5%;
+    // height:50px;
+    background: rgba(255,255,255,0.95);
+    color: black;
+    // border-radius: 10px;
+    padding:3%;
+    box-shadow: 0px 0px 10px black;
+}
+#fabiconbtn{
+    position: absolute;
+    bottom: 10%;
+}
+#emercont{
+    width: 80%;
+    position: absolute;
+    top:35%;
+    left:10%;
+    box-shadow: black 0px 0px 40px;
+    background-color: white;
+    display: none;
+   
+}

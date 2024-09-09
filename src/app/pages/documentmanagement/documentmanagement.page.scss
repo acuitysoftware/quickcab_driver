@@ -1,0 +1,60 @@
+#contentdiv{
+    width:100%;
+    margin:auto;
+    padding-bottom: 75px;
+}
+ion-item{
+    margin-top:3%;
+}
+#optionchooser{
+    position: absolute;
+    bottom: -25%;
+    left: 15%;
+    width: 70%;
+    background-color: #1a3a49;
+    color:#ffffff;
+    box-shadow: black 0px 0px 15px;
+    display: none;
+}
+#optionchooserfront{
+    position: absolute;
+    bottom: -25%;
+    left: 15%;
+    width: 70%;
+    background-color: #1a3a49;
+    color:#ffffff;
+    box-shadow: black 0px 0px 15px;
+    display: none;
+}
+ion-item{
+    --background:white;
+    color:black;
+}
+
+.booking_value_access{
+    margin-bottom: 20px;
+    width: 100%;
+    top: 50%;
+    position: absolute;
+}
+
+.booking_value_inner{
+    padding: 30px;
+    background: #FDECD7;
+    box-shadow: 0 0px 15px rgb(8 0 0 / 15%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 16px;
+    max-width: 320px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+
+.booking_value_inner h5{
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+}

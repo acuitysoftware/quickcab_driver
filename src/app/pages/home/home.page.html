@@ -1,0 +1,28 @@
+<ion-header [class]="isAndroid? 'android-header' : ''">
+  <ion-toolbar style="text-align: center; --background:#ffbc01;">
+    <ion-row>
+      <ion-col size="4" style="padding-top: 5%;padding-left:5%;text-align: left;">
+        <ion-icon name="menu" (click)='menuon()'></ion-icon>
+      </ion-col>
+      <ion-col size="4" style="padding-top: 5%;" id='onoff'>{{onoffstate}}</ion-col>
+      <ion-col size="4" style="padding-top: 2.5%;padding-right:5%;text-align: right;">
+        <ion-toggle id='onofftoggle' (click)='toggleactive()'></ion-toggle>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id='map_canvas'></div>
+  <div id='offlinediv'>
+    <h5><b>You Are OFFLINE</b></h5>
+    <h6>Go ONLINE to Receive Booking.</h6>
+  </div>
+  <div id='onlinediv' *ngIf="newreq > 0 && linestate != 0 && drivername!='' && newreq>0" (click)='gotobookings()'>
+    {{drivername}}, You Have {{newreq}} New Ride Request. <br><br>
+    Click to View
+  </div>
+  <ion-icon name="refresh"
+    style="background-color: #ff0000; position:absolute; top:1%; right:2%; font-size: 100%;border-radius:100%;padding:1.5%"
+    (click)='refreshpage()'></ion-icon>
+</ion-content>

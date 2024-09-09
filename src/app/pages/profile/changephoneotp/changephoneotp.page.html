@@ -1,0 +1,29 @@
+<ion-header [class]="isAndroid? 'android-header' : ''">
+  <ion-toolbar style="text-align: center;--background:#ffbc01;font-size: 85%;">
+    <ion-title>Enter OTP To Validate Your Phone</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-input type="tel" maxlength="4" placeholder="Enter OTP" id='reg_otp'
+    style="text-align: center;width:85%;margin:auto;margin-top:5%;border:grey 1px solid;border-radius:0px;">
+  </ion-input>
+  <br>
+  <ion-button expand="full" style="width: 85%;margin:auto;--background:#ffbc01" (click)='submitsigninotp()'>Submit
+  </ion-button>
+  <br><br>
+  <ion-content *ngIf="resentactive==0" style="text-align: center; color: #eb0113;" >
+    <font (click)='resendotp()'>Resend OTP</font>
+  </ion-content>
+  <ion-content *ngIf="resentactive!=0" style="text-align: center; color: #eb0113;">
+    <ion-spinner name="dots"></ion-spinner>
+  </ion-content>
+
+  <ion-fab vertical="bottom" horizontal="center" (click)='gotoprofile()'>
+    <ion-fab-button style="--background:#ffbc01">
+      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

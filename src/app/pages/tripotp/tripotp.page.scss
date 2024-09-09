@@ -1,0 +1,30 @@
+#map_canvas{
+    width: 100%;
+    height: 66%;
+}
+#startbtn{
+    width:100%;
+    margin: auto;
+    height: 35px;
+    --background: #ffbc01;
+    color: white;
+    border-radius: 0px;
+}
+#otpdiv{
+    position: absolute;
+    bottom:0%;
+    width:100%;
+    left:0%;
+    // height:50px;
+    background: rgba(255,255,255,0.998);
+    color: black;
+    // border-radius: 10px;
+    padding:3%;
+    box-shadow: 0px 0px 10px black;
+    padding-bottom: 50px;
+}
+#fabiconbtn{
+    position: absolute;
+    bottom: 10%;
+    width: 50%;
+}

@@ -1,0 +1,7 @@
+{
+  "name": "qcd",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

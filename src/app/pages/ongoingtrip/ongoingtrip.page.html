@@ -1,0 +1,61 @@
+<ion-content>
+  <div id='map_canvas'>
+
+  </div>
+  <div id='otpdiv'>
+    <ion-row style="border-bottom: grey 1px solid;">
+      <ion-col size="3" style="text-align: center;">
+        <img src="{{customerpic}}" style="width: 50px;height:50px;border-radius:100%;">
+      </ion-col>
+      <ion-col size="8" style="text-align: left;">
+        <h5 style="font-size: 90%;position: absolute;top:5%;">
+          {{customername}}<br>
+          <!-- Ride Rate: {{carrate | currency:'INR'}} / KM -->
+
+        </h5>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-size: 85%;">
+        <ion-icon name="pin" style="color:red;"></ion-icon>&nbsp;<b>Drop off : </b><br> {{endaddress}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3">
+        <img src="https://quickcabtaxiservice.com/storage/app/public/car.png" width="40" height="40"
+          *ngIf="carname==''">
+        <img src="https://quickcabtaxiservice.com/storage/app/public/justgo.png" width="40" height="40"
+          *ngIf="carname=='Just Go'">
+        <img src="https://quickcabtaxiservice.com/storage/app/public/luxury.png" width="40" height="40"
+          *ngIf="carname=='Luxury'">
+        <img src="https://quickcabtaxiservice.com/storage/app/public/primier.png" width="40" height="40"
+          *ngIf="carname=='Premier'">
+      </ion-col>
+      <ion-col size="3" style="font-size: 70%;"><br>
+        DISTANCE <br> <b>{{estimated_distance | uppercase}}</b>
+      </ion-col>
+      <ion-col size="3" style="font-size: 70%;"><BR>
+        DURATION <br> <b>{{estimated_time}}</b>
+      </ion-col>
+      <ion-col size="3" style="font-size: 70%;"><br>
+        PICKUP <br> <b>{{tripstarttime | date:'shortTime'}}</b>
+      </ion-col>
+    </ion-row>
+    <ion-row style="padding-bottom: 50px;">
+      <ion-col>
+        <ion-button id='startbtn' (click)='endtrip()'>Drop off</ion-button>
+      </ion-col>
+      <!-- <ion-col>
+        <ion-button id='startbtn' style="--background:#4d69cc" (click)='endtrip()'>Resume Trip</ion-button>
+      </ion-col> -->
+      <ion-col>
+        <ion-button id='navigatebtn' (click)='navigatemap()'>Start Navigation</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <!-- <ion-button id='reachbtn'>Start Trip</ion-button> -->
+</ion-content>
+
+<ion-icon name="refresh-circle"
+  style="position: absolute;top:5%;right:2%;font-weight:bold;color:#ff0000;font-size: 250%;" (click)='refreshpage()'>
+</ion-icon>

@@ -1,0 +1,166 @@
+<ion-header [class]="isAndroid? 'android-header' : ''">
+  <ion-toolbar style="text-align: center; --background:#ffbc01;">
+    <ion-row>
+      <ion-col size="2" style="padding-top: 4%;padding-left:5%;text-align: left;">
+
+      </ion-col>
+      <ion-col size="8" style="padding-top: 4%;" id='onoff'>Your Booking Summary</ion-col>
+      <ion-col size="2" style="padding-top: 4%;padding-right:5%;text-align: right;">
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor="let x of ridedets" style="width: 85%; margin: auto;color:black;">
+
+    <ion-row>
+      <ion-col>
+        <h5>
+          <ion-icon name="radio-button-on" style="color:limegreen"></ion-icon>
+          <b style="font-size: 85%;"> PICK-UP </b>
+        </h5>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-size: 70%;">
+        {{x.start_address}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h5>
+          <ion-icon name="pin" style="color:orangered"></ion-icon>
+          <b style="font-size: 85%;"> DROP-OFF </b>
+        </h5>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-size: 70%;">
+        {{x.end_address}}
+      </ion-col>
+    </ion-row>
+
+    <div *ngIf="x.tripType == 2 && x.round_current_status == 4">
+
+      <ion-row>
+        <ion-col>
+          <h5>
+            <ion-icon name="radio-button-on" style="color:limegreen"></ion-icon>
+            <b style="font-size: 85%;"> PICK-UP </b>
+          </h5>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col style="font-size: 70%;">
+          {{x.round_start_address}}
+        </ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col>
+          <h5>
+            <ion-icon name="pin" style="color:orangered"></ion-icon>
+            <b style="font-size: 85%;"> DROP-OFF </b>
+          </h5>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col style="font-size: 70%;">
+          {{x.round_end_address}}
+        </ion-col>
+      </ion-row>
+
+    </div>
+
+    <ion-row style="margin-top: 3%; font-size:70%">
+      <ion-col size="6">
+        <img src="https://quickcabtaxiservice.com/storage/app/public/justgo.png" width="40" height="40"
+          *ngIf="x.car_name=='Just Go'">
+        <img src="https://quickcabtaxiservice.com/storage/app/public/luxury.png" width="40" height="40"
+          *ngIf="x.car_name=='Luxury'">
+        <img src="https://quickcabtaxiservice.com/storage/app/public/primier.png" width="40" height="40"
+          *ngIf="x.car_name=='Premier'">
+        <br>
+        {{x.car_name}} ( {{x.car_model}} )
+      </ion-col>
+      <div *ngIf="x.tripType == 2">
+        <ion-col size="6" *ngIf="x.round_current_status == 4">
+          <p>Rate : {{x.first_km_rate|currency:'INR'}} / KM</p>
+          <p>Round Rate: {{x.second_km_rate|currency:'INR'}} / KM</p>
+          <p>Distance Travelled: {{x.total_distance}} KM</p>
+          <p>Waiting Time: {{x.waiting_time_min}}</p>
+          <p>Time Wave: <b style="color:red;">{{x.time_wave}}m</b></p>
+          <p>Waiting Charge:{{x.waiting_charge|currency:'INR'}}</p>
+          <p>Total Price: {{x.total_price |currency:'INR' }}</p>
+          <p>Discount : {{x.discount_price |currency:'INR' }}</p>
+        </ion-col>
+        <ion-col size="6" *ngIf="x.round_current_status != 4">
+          <p>Rate : {{carrate|currency:'INR'}} / KM</p>
+          <p>Distance Travelled : {{x.distance}} KM</p>
+        </ion-col>
+      </div>
+
+      <div *ngIf="x.tripType == 1">
+        <ion-col size="6" >
+          <!-- Rate : {{carrate|currency:'INR'}} / KM -->
+          <p>Rate : {{x.first_km_rate|currency:'INR'}} / KM</p>
+          <p>Distance Travelled: {{x.distance}} KM</p>
+          <p>Total Price: {{x.total_price |currency:'INR' }}</p>
+          <p>Discount : {{x.discount_price |currency:'INR' }}</p>
+        </ion-col>
+      </div>
+     
+     
+    </ion-row>
+
+    <ion-row style="margin-top:0.1%;">
+      <ion-col style="text-align: center;">
+        <div
+          style="background-image: url('https://quickcabtaxiservice.com/storage/app/public/paid.png'); background-size: contain; background-repeat: no-repeat ;height: 180px; text-align: center;">
+          <font
+            style="font-size: 120%; position: absolute;top:20%;font-weight: bold;left:35%; color:#1b5f61; text-shadow:rgb(248, 222, 21) 0px 0px 15px;">
+            Total Trip Fare <br><br> {{x.trip_price | currency:'INR'}}
+          </font>
+        </div>
+        <font style='font-size:75%;font-weight: bold;'>
+          Please Collect {{x.trip_price | currency:'INR'}} by Cash/Online from {{x.customer_name}}</font>
+        <!-- <b>
+          <h5 style="font-size: 70%; color:red" (click)='openec()'>Emergency Contact</h5>
+        </b> -->
+
+      </ion-col>
+    </ion-row>
+
+  </div>
+
+  <ion-fab horizontal="center" style="padding-bottom: 50px;">
+    <ion-fab-button (click)='gotohomepage()'>
+      <ion-icon name="checkmark"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+
+
+<div id="emercont">
+  <ion-row>
+    <ion-col size='12' (click)='closeec()'
+      style="background-color: #ffbc01;color:black; text-align: left;padding-left: 5%; font-size: 100%;">
+      <ion-icon name="close-circle" style="font-weight: bold;"></ion-icon>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CLOSE
+    </ion-col>
+    <ion-col size="12" style="border-bottom:rgb(181, 179, 179) 1px solid;padding-left: 5%;"
+      (click)="callnumber('8244555628')">
+      <ion-icon name="id-card" style="color:#ffbc01;"></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      8798022337
+    </ion-col>
+    <ion-col size="12" style="border-bottom:rgb(181, 179, 179) 1px solid;padding-left: 5%;"
+      (click)="callnumber('8874555889')">
+      <ion-icon name="id-card" style="color:#ffbc01;"></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      8798022338
+    </ion-col>
+  </ion-row>
+</div>

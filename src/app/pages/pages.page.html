@@ -1,0 +1,64 @@
+<ion-router-outlet id="menu"></ion-router-outlet>
+
+
+<ion-menu side="start" menuId="menu" contentId="menu">
+  <ion-header id='menuheader'>
+    <img id="driverimage" src='{{driverprofileimage}}'>
+    <br><br>
+    {{drivername}}
+  </ion-header>
+  <ion-content style="--background:white">
+    <ion-list style="background-color: white;">
+      <!--<ion-item lines='none'>
+        <ion-icon name='home'></ion-icon> &nbsp; &nbsp; <a href="/pages/home"> Home </a>
+      </ion-item>
+      <ion-item lines='none'>
+        <ion-icon name='person'></ion-icon> &nbsp; &nbsp;<a href="/pages/profile"> Profile Management </a>
+      </ion-item>
+      <ion-item lines='none'>
+        <ion-icon name='document'></ion-icon> &nbsp; &nbsp;<a href="/pages/documentmanagement"> Document Management </a>
+      </ion-item>
+      <ion-item lines='none'>
+        <ion-icon name='car-sport'></ion-icon> &nbsp; &nbsp;<a href="/pages/carmanagement"> Car Management </a>
+      </ion-item>
+      <ion-item lines='none'>
+        <ion-icon name='id-card'></ion-icon> &nbsp; &nbsp;<a href="/pages/bookinghistory"> Booking History </a>
+      </ion-item>
+      <ion-item lines='none'>
+        <ion-icon name='wallet'></ion-icon> &nbsp; &nbsp;<a href="/pages/paymenthistory"> Payment History </a>
+      </ion-item>
+      <ion-item lines='none'>
+        <ion-icon name='key'></ion-icon> &nbsp; &nbsp;<a href="/pages/changepassword"> Change Password </a>
+      </ion-item>
+      <ion-item lines='none'>
+        <ion-icon name='log-out'></ion-icon> &nbsp; &nbsp;<a (click)='logout()'> Log Out </a>
+      </ion-item>-->
+
+      <ion-item lines='none'>
+        <ion-icon name='home'></ion-icon> &nbsp; &nbsp; <a (click)="gotopage('/pages/home')" > Home </a>
+      </ion-item>
+      <ion-item lines='none'>
+        <ion-icon name='person'></ion-icon> &nbsp; &nbsp;<a (click)="gotopage('/pages/profile')" > Profile Management </a>
+      </ion-item>
+      <ion-item lines='none'>
+        <ion-icon name='document'></ion-icon> &nbsp; &nbsp;<a (click)="gotopage('/pages/documentmanagement')" > Document Management </a>
+      </ion-item>
+      <ion-item lines='none'>
+        <ion-icon name='car-sport'></ion-icon> &nbsp; &nbsp;<a (click)="gotopage('/pages/carmanagement')" > Car Management </a>
+      </ion-item>
+      <ion-item lines='none'>
+        <ion-icon name='id-card'></ion-icon> &nbsp; &nbsp;<a (click)="gotopage('/pages/bookinghistory')" > Booking History </a>
+      </ion-item>
+      <ion-item lines='none'>
+        <ion-icon name='wallet'></ion-icon> &nbsp; &nbsp;<a (click)="gotopage('/pages/paymenthistory')" > Payment History </a>
+      </ion-item>
+      <ion-item lines='none'>
+        <ion-icon name='key'></ion-icon> &nbsp; &nbsp;<a (click)="gotopage('/pages/changepassword')" > Change Password </a>
+      </ion-item>
+      <ion-item lines='none'>
+        <ion-icon name='log-out'></ion-icon> &nbsp; &nbsp;<a (click)='logout()'> Log Out </a>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+</ion-menu>

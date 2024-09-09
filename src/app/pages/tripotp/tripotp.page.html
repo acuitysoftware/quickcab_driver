@@ -1,0 +1,56 @@
+<ion-content>
+  <div id='map_canvas'>
+
+  </div>
+  <div id='otpdiv'>
+    <ion-row>
+      <ion-col size="2">
+        <img src="{{profileimage}}" style="width: 50px;height:50px;border-radius:100%;">
+      </ion-col>
+      <ion-col size="8">
+        <h5 style="font-size: 70%; font-weight:bold;">
+          {{customername}}
+        </h5>
+        <!-- <h6 style="font-size: 70%;">Estimated Price : {{estdprice|currency:'INR'}}</h6> -->
+      </ion-col>
+      <ion-col size="2 ">
+        <ion-fab (click)='callcustomer()'>
+          <ion-fab-button style="width: 50px; height: 50px;">
+            <ion-icon name="call"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="tripType == 2">
+      <ion-col style="margin-left:5%;font-weight:bold;font-size: 90%;">
+        <span><b>Ride Type : Round Trip</b></span>
+      </ion-col>
+    </ion-row>
+
+    <h6 style="font-weight: bold;font-size:85%;">
+      <ion-icon name='radio-button-on' style='color:green'></ion-icon> PICK UP
+      <h6 style="font-size:70%;font-weight:regular;color:black">
+        {{startaddress}}
+      </h6>
+    </h6>
+    <!-- <h6 style="font-weight: bold;font-size:85%;">
+      <ion-icon name='pin' style='color:red'></ion-icon> DROP OFF
+      <h6 style="font-size:70%;font-weight:regular;">
+        {{endaddress}}
+      </h6>
+    </h6> -->
+
+    <ion-row>
+      <ion-col>
+        <ion-input type="tel" maxlength="4" placeholder="Enter OTP" id='ride_otp' (keyup)='checkotp()'
+          style="font-size: 85%; letter-spacing: 5px; text-align: center;font-weight: bold;"></ion-input>
+      </ion-col>
+    </ion-row>
+    
+    <ion-button id='startbtn' (click)='starttrip()'>Start Trip</ion-button>
+  </div>
+  <!-- <ion-button id='reachbtn'>Start Trip</ion-button> -->
+</ion-content>
+
+<!-- add a call button here to call customer-->

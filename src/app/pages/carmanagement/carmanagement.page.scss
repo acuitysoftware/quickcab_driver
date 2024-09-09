@@ -1,0 +1,126 @@
+#contentdiv{
+    width:90%;
+    margin:auto;
+    padding-bottom: 50px;
+}
+ion-item{
+    margin-top:3%;
+}
+ion-input{
+    border-radius: 5px;
+}
+#optionchooser{
+    position: absolute;
+    bottom: -25%;
+    left: 15%;
+    width: 70%;
+    background-color: #1a3a49;
+    color:#ffffff;
+    box-shadow: black 0px 0px 15px;
+    display: none;
+}
+#optionchooserfront{
+    position: absolute;
+    bottom: -25%;
+    left: 15%;
+    width: 70%;
+    background-color: #1a3a49;
+    color:#ffffff;
+    box-shadow: black 0px 0px 15px;
+    display: none;
+}
+
+#fuelchooser{
+    position: absolute;
+    top:25%;
+    left: 0px;
+    width: 85%;
+    left:7.5%;
+    box-shadow: 0px 0px 20px black;
+    background-color: #ffffff;
+    display: none;
+    max-height: 50%;
+    overflow: scroll;
+}
+
+#colorchooser{
+    position: absolute;
+    top:25%;
+    left: 0px;
+    width: 85%;
+    left:7.5%;
+    box-shadow: 0px 0px 20px black;
+    background-color: #ffffff;
+    display: none;
+    max-height: 50%;
+    overflow: scroll;
+}
+
+#modelchooser{
+    position: absolute;
+    top:25%;
+    left: 0px;
+    width: 85%;
+    left:7.5%;
+    box-shadow: 0px 0px 20px black;
+    background-color: #ffffff;
+    display: none;
+    max-height: 50%;
+    overflow: scroll;
+}
+
+#typechooser{
+    position: absolute;
+    top:25%;
+    left: 0px;
+    width: 85%;
+    left:7.5%;
+    box-shadow: 0px 0px 20px black;
+    background-color: #ffffff;
+    display: none;
+    max-height: 50%;
+    overflow: scroll;
+}
+ion-content{
+    --background:white;
+    color:black;
+}
+ion-item{
+    --background:white;
+    color:black;
+}
+ion-input{
+    background-color: #ffffff;
+    color:#1a3a49;
+}
+ion-col{
+    color:black;
+}
+
+.booking_value_access{
+    margin-bottom: 20px;
+    width: 100%;
+    top: 50%;
+    position: absolute;
+}
+
+.booking_value_inner{
+    padding: 30px;
+    background: #FDECD7;
+    box-shadow: 0 0px 15px rgb(8 0 0 / 15%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 16px;
+    max-width: 320px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+
+.booking_value_inner h5{
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+}

@@ -1,0 +1,129 @@
+<ion-header [class]="isAndroid? 'android-header' : ''">
+  <ion-toolbar style="text-align: center; --background:#ffbc01;">
+    <ion-row>
+      <ion-col size="3" style="padding-top: 4%;padding-left:5%;text-align: left;">
+        <ion-icon name="menu" (click)='menuon()'></ion-icon>
+      </ion-col>
+      <ion-col size="6" style="padding-top: 4%;text-align: center;" id='onoff'>Profile</ion-col>
+      <ion-col size="3" style="padding-top: 4%;padding-right:5%;text-align: right;">
+
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--background:#f8f8f8;">
+
+  <div id='containerdiv'>
+    <img src='{{backfile}}' id='driverimage' (click)='openchooser()'>
+    <img src='{{backfile}}' id='driverimagepostservice'>
+    <br><br>
+    <font id='containertitle'>{{drivername}}</font>
+        
+  </div>
+
+  <div style="text-align: center; margin-top: 10px;">
+    <span *ngIf="driverrate > 0">
+      <ion-icon name="star-sharp" style="color:#ffbc01;font-size: 120%;"></ion-icon>
+      {{driverrate}} ({{drivertotaltrips}} Trips)
+      
+    </span> 
+
+  </div>
+
+   
+
+  <div id='editorial'>
+    <ion-item lines="none" style="border: grey 1px solid;margin-bottom:5%;">
+      <ion-icon name="person" style="color:grey"></ion-icon>
+      &nbsp;&nbsp; &nbsp;&nbsp;
+      <ion-input type="text" id='dname' value="{{drivername}}" (keyup)='checkdname()'></ion-input>
+    </ion-item>
+    <ion-item lines="none" style="border: grey 1px solid;margin-bottom:5%; display:none;" id='phnnmb'>
+      <ion-icon name="call" style="color:grey"></ion-icon>
+      &nbsp;&nbsp; &nbsp;&nbsp;
+      <ion-input type="tel" maxlength="10" id='dphone' value="{{driverphone}}" readonly="true"></ion-input>
+    </ion-item>
+    <ion-item lines="none" style="border: grey 1px solid;margin-bottom:5%;">
+      <ion-icon name="calendar" style="color:grey"></ion-icon>
+      &nbsp;&nbsp; &nbsp;&nbsp;
+      <ion-input type="text" id='ddob' placeholder="Date Of Birth" readonly="true" value="{{driverdob}}"
+        (click)='opendatepicker()'></ion-input>
+      <ion-input type="text" style="display: none;" id='ddobr' placeholder="Date Of Birth" readonly="true"
+        value="{{driverdob}}"></ion-input>
+    </ion-item>
+    <ion-item lines="none" style="border: grey 1px solid;margin-bottom:5%;">
+      <ion-icon name="body" style="color:grey"></ion-icon>
+      &nbsp;&nbsp; &nbsp;&nbsp;
+      <ion-input type="text" id='dgender' placeholder="Gender" readonly="true" value="{{drivergender|uppercase}}"
+        (click)='selectgender()'></ion-input>
+      <ion-input type="text" id='rdgender' style="display: none;" placeholder="Gender" readonly="true"
+        value="{{drivergender|uppercase}}"></ion-input>
+    </ion-item>
+    <ion-item lines="none" style="border: grey 1px solid;margin-bottom:5%;">
+      <ion-icon name="mail" style="color:grey"></ion-icon>
+      &nbsp;&nbsp; &nbsp;&nbsp;
+      <ion-input type="text" id='demail' readonly="true" value="{{driveremail}}" style="color:grey"></ion-input>
+    </ion-item>
+
+    <ion-item id='cph' lines="none" style="--background:none;" (click)='changephone()'>
+      <ion-row>
+        <ion-col style="color: #ffbc01;">
+          Change Your Phone Number
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-button expand="full" id="submitbtn" (click)='saveprofile()'>Save</ion-button>
+  </div>
+
+</ion-content>
+
+<div id='genderbar'>
+  <ion-item style="text-align: center; --background: #ffbc01;color:white;" (click)='closegenderbar()'>
+    <ion-icon name="close-circle"></ion-icon> &nbsp;&nbsp;&nbsp;&nbsp; <font color='white'>CANCEL</font>
+  </ion-item>
+  <ion-item style="text-align: center;" (click)="changegender('male')">
+    <ion-icon name="male"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;MALE
+  </ion-item>
+  <ion-item style="text-align: center;" (click)="changegender('female')">
+    <ion-icon name="female"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;FEMALE
+  </ion-item>
+</div>
+
+<div id='optionchooser'
+  style="position: absolute;margin-bottom: 55px;left:5%;width:90%;background-color: #ffffff; display: none; box-shadow: black 1px 2px 30px;">
+  <ion-item style="width: 100%;text-align: center; --background: #ffbc01;" (click)='closechooser()'>
+    <ion-icon name="close" style="font-size: 130%;"></ion-icon> &nbsp; &nbsp; &nbsp; &nbsp; Close
+  </ion-item>
+  <ion-item style="width: 100%;text-align: center;" (click)='opencamera()'>
+    <ion-icon name="camera" style="font-size: 130%;"></ion-icon> &nbsp; &nbsp; &nbsp; &nbsp; CAMERA
+  </ion-item>
+  <ion-item style="width: 100%; text-align: center;" (click)='openfilemanager()'>
+    <ion-icon name="documents" style="font-size: 130%;"></ion-icon> &nbsp; &nbsp; &nbsp; &nbsp; FILE MANAGER
+  </ion-item>
+</div>
+
+<!--<ion-fab *ngIf='bookingcount > 0' vertical="bottom" horizontal="center" (click)='viewbookings()'>
+  <ion-button style="height:40px;--background:#ffbc01;color:royalblue;font-weight: bold;">
+    <ion-icon name='car'></ion-icon> &nbsp;&nbsp; {{bookingcount}}
+  </ion-button>
+</ion-fab>-->
+
+<div *ngIf='bookingcount > 0' class="booking_value_access">
+
+  <div class="booking_value_inner">
+
+    <h5>You have New {{bookingcount}} Booking</h5>   
+
+  <ion-button (click)='viewbookings()' style="height:40px;--background:#ffbc01;color:royalblue;font-weight: bold;">
+    View Booking&nbsp;<ion-icon name='car'></ion-icon>&nbsp;&nbsp; {{bookingcount}}
+  </ion-button>
+
+  </div>
+
+</div>
+
+<!--<audio *ngIf='bookingcount > 0' id='bgalert' controls autoplay loop style="display: none;">
+  <source src="../../../assets/car_alarm.mp3" type="audio/mp3">
+</audio>-->
